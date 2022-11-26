@@ -3,13 +3,13 @@ import math
 
 
 HOST = "127.0.0.1"
+# HOST = "192.168.1.115"
 PORT = 7000
 
 Operators = {'+', '-', '*', '/', '^', '%'}
 Priority = {'+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '^': 3}
+
 # Stack class
-
-
 class Stack:
     def __init__(self, size):
         self.stack = []
@@ -46,27 +46,27 @@ class Stack:
 
         return result
 
-
 def isOperator(c):
     return c in Operators
 
-
-def getPrecedence(c):
-    result = 0
-
-    for char in Operators:
-        result += 1
-
-        if char == c:
-            if c in '-/':
-                result -= 1
-            break
-
-    return result
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# infix to postfix
-
+def arithmetic(num1, num2, op):
+    if op == '+':
+        return num1 + num2
+    elif op == '-':
+        return num1 - num2
+    elif op == '*':
+        return num1 * num2
+    elif op == '/':
+        if int(num2) == 0:
+            return 0
+        return num1 / num2
+    elif op == '^':
+        return math.pow(num1, num2)
+    elif op == '%':
+        return num1 % num2
+    else: 
+        print("Invalid Operator")
+        return 0
 
 def infixToPostfix(expr):
     result = ""
@@ -117,25 +117,6 @@ def infixToPostfix(expr):
         
     return result
 
-def arithmetic(num1, num2, op):
-    if op == '+':
-        return num1 + num2
-    elif op == '-':
-        return num1 - num2
-    elif op == '*':
-        return num1 * num2
-    elif op == '/':
-        if int(num2) == 0:
-            return 0
-        return num1 / num2
-    elif op == '^':
-        return math.pow(num1, num2)
-    elif op == '%':
-        return num1 % num2
-    else: 
-        print("Invalid Operator")
-        return 0
-
 def postfixCalc(expr):
     stack = Stack(15)
     num = ''
@@ -163,8 +144,9 @@ def postfixCalc(expr):
                 return "NULL"
             stack.push(result)
         idx += 1
-
-    return stack.pop()
+    result = stack.pop()
+    result = ("{:.2f}".format(result))
+    return result
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

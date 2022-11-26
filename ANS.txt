@@ -1,5 +1,5 @@
 ANS = NULL
 ANS = invalid input
-ANS = 700.0
-ANS = 1.2857142857142858
-ANS = 713.0
+ANS = 700.00
+ANS = 1.29
+ANS = 713.00
