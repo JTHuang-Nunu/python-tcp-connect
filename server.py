@@ -125,7 +125,8 @@ def postfixCalc(expr):
         if char == '-' and (idx+1) < len(expr):
             if expr[idx+1].isnumeric():
                 num+=char
-        elif char.isnumeric():
+                continue
+        if char.isnumeric():
             num +=char
         elif char == ' ':
             if num != '':
