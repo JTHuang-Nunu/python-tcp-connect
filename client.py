@@ -1,6 +1,7 @@
 import socket
 
 HOST = "127.0.0.1"
+# HOST = "192.168.1.115"
 PORT = 7000
 
 server = (HOST, PORT)
@@ -43,7 +44,7 @@ while True:
                 s.send(line.encode())
                 s.recv(1024)  # ???
             f.close()
-            
+
         except:
             print("File not found")
 

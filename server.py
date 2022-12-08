@@ -57,7 +57,7 @@ def arithmetic(num1, num2, op):
     elif op == '*':
         return num1 * num2
     elif op == '/':
-        if int(num2) == 0:
+        if num2 == 0:
             return 0
         return num1 / num2
     elif op == '^':
@@ -107,6 +107,8 @@ def infixToPostfix(expr):
                 result += " "
                 result += cpop
                 cpop = stack.pop()
+        elif char == '.':
+            result += char
 
         idx += 1
 
@@ -127,6 +129,8 @@ def postfixCalc(expr):
                 num+=char
                 continue
         if char.isnumeric():
+            num +=char
+        elif char == '.':
             num +=char
         elif char == ' ':
             if num != '':
